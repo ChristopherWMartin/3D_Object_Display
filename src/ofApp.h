@@ -15,12 +15,18 @@ class ofApp : public ofBaseApp{
 
     ofVideoGrabber cam;
     ofxFaceTracker tracker;
-    ExpressionClassifier classifier;
-    ofxAssimpModelLoader model;
-    ofxAssimpModelLoader model2;
+    ExpressionClassifier classifier; 
+    ofEasyCam easyCam;
+
     ofLight light;
     ofLight light2;
-    ofEasyCam easyCam;
+
+    ofxAssimpModelLoader model;
+    ofxAssimpModelLoader model2;
+
     ofVboMesh mesh;
     ofVboMesh mesh2;
+
+    ofImage tex;
+    ofImage tex2;
 };

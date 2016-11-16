@@ -31,6 +31,9 @@ void ofApp::setup(){
 
     mesh2 = model2.getMesh(0);
 
+    tex.load("pattern_idea.png");
+    tex2.load("carrepeatscreenshot4.png");
+
     classifier.load("expressions");
 
     light.enable();
@@ -107,7 +110,9 @@ void ofApp::draw(){
                             ofRotate(leftEye_y, 1, 0, 0);
 
                             //ofSetColor(254, 100, 200);
+                            tex.bind();
                             mesh.drawFaces();
+                            tex.unbind();
 
                         ofPopMatrix();
 
@@ -117,7 +122,9 @@ void ofApp::draw(){
                             ofRotate(leftEye_x, 1, 0, 0);
                             ofRotate(leftEye_y, 0, 1, 0);
 
+                            tex2.bind();
                             mesh2.drawFaces();
+                            tex2.unbind();
 
                         ofPopMatrix();
                     }
