@@ -121,15 +121,13 @@ void ofApp::draw(){
                     ofRotate(leftEye_x, 0, 1, 0);
                     ofRotate(leftEye_y, 1, 0, 0);
 
-<<<<<<< HEAD
-                            //ofSetColor(254, 100, 200);
-                            tex.bind();
-                            mesh.drawFaces();
-                            tex.unbind();
-=======
-                    //ofSetColor(254, 100, 200);
-                    mesh.drawFaces();
->>>>>>> 14c33bede59fcc8193f021a07316af14edae3da0
+                         //ofSetColor(254, 100, 200);
+                         tex.bind();
+                         mesh.drawFaces();
+                         tex.unbind();
+
+                        //ofSetColor(254, 100, 200);
+                        mesh.drawFaces();
 
                 ofPopMatrix();
 
@@ -139,13 +137,9 @@ void ofApp::draw(){
                     ofRotate(leftEye_x, 1, 0, 0);
                     ofRotate(leftEye_y, 0, 1, 0);
 
-<<<<<<< HEAD
                             tex2.bind();
                             mesh2.drawFaces();
                             tex2.unbind();
-=======
-                    mesh2.drawFaces();
->>>>>>> 14c33bede59fcc8193f021a07316af14edae3da0
 
                 ofPopMatrix();
             }
