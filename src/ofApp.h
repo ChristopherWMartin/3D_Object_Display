@@ -27,6 +27,16 @@ class ofApp : public ofBaseApp{
     ofVboMesh mesh;
     ofVboMesh mesh2;
 
+<<<<<<< HEAD
     ofImage tex;
     ofImage tex2;
+=======
+    float leftEye_x = 0;
+    float leftEye_y = 0;
+    float trackerScale = 0;
+
+    float alpha = 0.92;
+
+
+>>>>>>> 14c33bede59fcc8193f021a07316af14edae3da0
 };
