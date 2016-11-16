@@ -3,16 +3,19 @@
 using namespace cv;
 using namespace ofxCv;
 
+// Find a solution to reduce jitteryness caused by facetacking
+// inaccuracies. Blend/'cross dissolve' between frames?
 
 void ofApp::setup(){
 
-    ofSetFrameRate(60);
+  ofSetFrameRate(60);
     ofSetVerticalSync(true);
     cam.initGrabber(640, 480);
     tracker.setup();
     ofDisableArbTex();
     ofEnableDepthTest();
-    
+
+    // work in Blender to get image wraps working
     model.loadModel("3DModel_smpl.3ds", 10);
     model.setRotation(0, 0, 0, 0, 0);
     model.setScale(0.9, 0.9, 0.9);
@@ -57,12 +60,13 @@ void ofApp::draw(){
 
       ofBackground(0, 255, 200);
 
+      // is 'LeftEye' the best solution to determine
+      // face movement from left to right?
         ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
         ofVec2f leftCenter = leftEye.getBoundingBox().getCenter();
         int leftEye_x = ofMap(leftCenter.x, 0, 500, 0, 800, true);
         int leftEye_y = ofMap(leftCenter.y, 0, 500, 0, 800, true);
         int trackerScale = ofMap(tracker.getScale(), 0, 8, 0, 400, true);
-
 
         //std::cout << << std::endl;
 
@@ -101,17 +105,21 @@ void ofApp::draw(){
                         ofScale(trackerScale, trackerScale, trackerScale);
                         ofRotate(leftEye_x, 0, 1, 0);
                         ofRotate(leftEye_y, 1, 0, 0);
-                        tex.bind();
+
+			tex.bind();
                         ofSetColor(255, 100, 200);
                         mesh.drawFaces();
                         tex.unbind();
-                        ofPopMatrix();
-                        ofPushMatrix();
+
+			ofPopMatrix();
+
+			ofPushMatrix();
 
                         ofScale(trackerScale - 50, trackerScale - 50, trackerScale - 50);
                         ofRotate(leftEye_x, 1, 0, 0);
                         ofRotate(leftEye_y, 0, 1, 0);
-                        tex.bind();
+
+			tex.bind();
                         mesh2.drawFaces();
                         tex.unbind();
 
@@ -129,12 +137,14 @@ void ofApp::draw(){
             ofBackground(255, 0, 200);
 
             ofPushMatrix();
-            ofScale(200, 200, 200);
+
+	    ofScale(200, 200, 200);
             //ofSetColor(0, 255, 0);
             //tex.bind();
             mesh.drawFaces();
             //tex.unbind();
-            ofPopMatrix();
+
+	    ofPopMatrix();
         }
 
     easyCam.end();
