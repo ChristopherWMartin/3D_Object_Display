@@ -1,9 +1,11 @@
 *.qbs
 *.swp
-/bin/data/*.3ds
+*.user
 /bin/data/*.obj
-/bin/data/*.dae
 /bin/data/*.mtl
 /bin/data/*.png
 /bin/data/*.jpg
 /bin/data/*.stl
+/src/ofApp.cpp~
+/src/ofApp.h~
+/src/main.cpp~
