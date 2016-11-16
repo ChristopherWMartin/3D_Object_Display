@@ -1,0 +1,4 @@
+ofxAssimpModelLoader
+ofxCv
+ofxFaceTracker
+ofxOpenCv

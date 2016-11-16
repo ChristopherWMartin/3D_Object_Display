@@ -1,0 +1,9 @@
+*.qbs
+*.swp
+/bin/data/*.3ds
+/bin/data/*.obj
+/bin/data/*.dae
+/bin/data/*.mtl
+/bin/data/*.png
+/bin/data/*.jpg
+/bin/data/*.stl
