@@ -23,4 +23,12 @@ class ofApp : public ofBaseApp{
     ofEasyCam easyCam;
     ofVboMesh mesh;
     ofVboMesh mesh2;
+
+    float leftEye_x = 0;
+    float leftEye_y = 0;
+    float trackerScale = 0;
+
+    float alpha = 0.92;
+
+
 };
