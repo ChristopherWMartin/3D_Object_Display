@@ -7,8 +7,8 @@ using namespace ofxCv;
 // inaccuracies. Blend/'cross dissolve' between frames?
 
 void ofApp::setup(){
-
-  ofSetFrameRate(60);
+	
+    ofSetFrameRate(60);
     ofSetVerticalSync(true);
     cam.initGrabber(640, 480);
     tracker.setup();
@@ -16,15 +16,15 @@ void ofApp::setup(){
     ofEnableDepthTest();
 
     // work in Blender to get image wraps working
-    model.loadModel("3DModel_smpl.3ds", 10);
+    model.loadModel("3DModel_wrapped3.dae", 10);
     model.setRotation(0, 0, 0, 0, 0);
     model.setScale(0.9, 0.9, 0.9);
     model.setPosition(50, 50, 0);
 
     mesh = model.getMesh(0);
-    tex.load("texture1.png");
+    //tex.load("texture1.png");
 
-    model2.loadModel("3DModel2.obj", 10);
+    model2.loadModel("3DModel2.3ds", 10);
     model2.setRotation(0, 90, 1, 1, 0);
     model2.setScale(0.9, 0.9, 0.9);
     model2.setPosition(50, 50, 0);
@@ -87,7 +87,7 @@ void ofApp::draw(){
                 else if (classifier.getDescription(i) == "eyebrows raised" &&
                          classifier.getProbability(i) > 0.9){
 
-		  //ofSetColor(255, 0, 0);
+                    //ofSetColor(255, 0, 0);
                     ofPushMatrix();
                     ofScale(trackerScale, trackerScale, trackerScale);
                     ofRotate(leftEye_x, 1, 0, 0);
@@ -102,26 +102,22 @@ void ofApp::draw(){
 
                         ofPushMatrix();
 
-                        ofScale(trackerScale, trackerScale, trackerScale);
-                        ofRotate(leftEye_x, 0, 1, 0);
-                        ofRotate(leftEye_y, 1, 0, 0);
+                            ofScale(trackerScale, trackerScale, trackerScale);
+                            ofRotate(leftEye_x, 0, 1, 0);
+                            ofRotate(leftEye_y, 1, 0, 0);
 
-			tex.bind();
-                        ofSetColor(255, 100, 200);
-                        mesh.drawFaces();
-                        tex.unbind();
+                            //ofSetColor(254, 100, 200);
+                            mesh.drawFaces();
 
-			ofPopMatrix();
+                        ofPopMatrix();
 
-			ofPushMatrix();
+                        ofPushMatrix();
 
-                        ofScale(trackerScale - 50, trackerScale - 50, trackerScale - 50);
-                        ofRotate(leftEye_x, 1, 0, 0);
-                        ofRotate(leftEye_y, 0, 1, 0);
+                            ofScale(trackerScale - 50, trackerScale - 50, trackerScale - 50);
+                            ofRotate(leftEye_x, 1, 0, 0);
+                            ofRotate(leftEye_y, 0, 1, 0);
 
-			tex.bind();
-                        mesh2.drawFaces();
-                        tex.unbind();
+                            mesh2.drawFaces();
 
                         ofPopMatrix();
                     }
@@ -138,13 +134,13 @@ void ofApp::draw(){
 
             ofPushMatrix();
 
-	    ofScale(200, 200, 200);
+            ofScale(200, 200, 200);
             //ofSetColor(0, 255, 0);
             //tex.bind();
             mesh.drawFaces();
             //tex.unbind();
 
-	    ofPopMatrix();
+            ofPopMatrix();
         }
 
     easyCam.end();

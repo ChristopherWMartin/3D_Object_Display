@@ -7,3 +7,6 @@
 /bin/data/*.png
 /bin/data/*.jpg
 /bin/data/*.stl
+/src/ofApp.cpp~
+/src/ofApp.h~
+/src/main.cpp~
