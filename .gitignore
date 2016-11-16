@@ -1,8 +1,7 @@
 *.qbs
 *.swp
-/bin/data/*.3ds
+*.user
 /bin/data/*.obj
-/bin/data/*.dae
 /bin/data/*.mtl
 /bin/data/*.png
 /bin/data/*.jpg
