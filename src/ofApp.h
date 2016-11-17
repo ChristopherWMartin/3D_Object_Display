@@ -11,14 +11,13 @@ class ofApp : public ofBaseApp{
   void setup();
     void update();
     void draw();
-    void keyPressed(int key);
 
     ofVideoGrabber cam;
     ofVideoPlayer videoPlayer;
     ofTexture videoTex;
     ofTexture videoTex2;
     ofxFaceTracker tracker;
-    ExpressionClassifier classifier; 
+   // ExpressionClassifier classifier;
     ofEasyCam easyCam;
 
     ofLight light;
@@ -36,8 +35,6 @@ class ofApp : public ofBaseApp{
     ofImage tex;
     ofImage tex2;
     ofImage tex3;
-
-    ofVec3f mesh3_center;
 
     float leftEye_x = 0;
     float leftEye_y = 0;

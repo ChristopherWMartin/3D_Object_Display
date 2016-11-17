@@ -3,8 +3,11 @@
 using namespace cv;
 using namespace ofxCv;
 
-// Find a solution to reduce jitteryness caused by facetacking
-// inaccuracies. Blend/'cross dissolve' between frames?
+// fix speed loss when searching for face
+
+// Animation in background
+// human shaped object & mess with
+// scales of objects for projection
 
 void ofApp::setup(){
 	
@@ -41,8 +44,6 @@ void ofApp::setup(){
     tex2.load("carrepeatscreenshot4.png");
     //tex3.load("");
 
-    classifier.load("expressions");
-
     light.enable();
     //light.setPosition(model.getPosition() + ofPoint(0, 0, 1600));
     //light2.enable();
@@ -58,9 +59,7 @@ void ofApp::update(){
 
         videoTex.loadData(cam.getPixels());
 
-        if(tracker.update(toCv(cam))) {
-            classifier.classify(tracker);
-        }
+        tracker.update(toCv(cam));
     }
 
     videoPlayer.update();
@@ -91,39 +90,6 @@ void ofApp::draw(){
         leftEye_x = (alpha) * leftEye_x + (1 - alpha) * rawLeftEye_x;
         leftEye_y = (alpha) * leftEye_y + (1 - alpha) * rawLeftEye_y;
         trackerScale = (alpha) * trackerScale + (1 - alpha) * rawLrackerScale;
-
-        //std::cout << << std::endl;
-
-        int n = classifier.size();
-
-        for(int i = 0; i < n; i++){
-	  
-            if (classifier.getDescription(i) == "smile" &&
-                classifier.getProbability(i) > 0.75){
-
-                //ofSetColor(255, 0, 0);
-                ofPushMatrix();
-                ofScale(trackerScale, trackerScale, trackerScale);
-                ofRotate(leftEye_x, 1, 0, 0);
-                ofRotate(leftEye_y, 0, 1, 0);
-                mesh.drawVertices();
-                ofPopMatrix();
-            }
-            else if (classifier.getDescription(i) == "eyebrows raised" &&
-                     classifier.getProbability(i) > 0.9){
-
-                //ofSetColor(255, 0, 0);
-                ofPushMatrix();
-                ofScale(trackerScale, trackerScale, trackerScale);
-                ofRotate(leftEye_x, 1, 0, 0);
-                ofRotate(leftEye_y, 0, 1, 0);
-                mesh.drawWireframe();
-                ofPopMatrix();
-            }
-            else if (classifier.getDescription(i) == "neutral" &&
-                     classifier.getProbability(i) > 0.9){
-
-                //ofSetColor(255, 0, 0);
 
                 ofPushMatrix();
 
@@ -166,25 +132,19 @@ void ofApp::draw(){
                             //tex3.unbind();
 
                 ofPopMatrix();
-            }
-            else
-            {
-
-                // do somthing...
-
-            }
-        }
     }
     else
     {
 
         //ofBackground(255, 0, 200);
 
+        float time = ofGetElapsedTimef();
+
         ofPushMatrix();
 
-            ofScale(200, 200, 200);
-            ofRotateX(90 * ofGetElapsedTimef());
-            ofRotateY(20 * ofGetElapsedTimef());
+            ofScale(150, 150, 150);
+            ofRotateX(90 * time);
+            ofRotateY(20 * time);
             videoTex.bind();
             mesh.drawFaces();
             videoTex.unbind();
@@ -192,9 +152,9 @@ void ofApp::draw(){
         ofPopMatrix();
         ofPushMatrix();
 
-            ofScale(200, 200, 200);
-            ofRotateX(20 * ofGetElapsedTimef());
-            ofRotateY(90 * ofGetElapsedTimef());
+            ofScale(150, 150, 150);
+            ofRotateX(20 * time);
+            ofRotateY(90 * time);
             tex2.bind();
             mesh2.drawFaces();
             tex2.unbind();
@@ -202,9 +162,9 @@ void ofApp::draw(){
         ofPopMatrix();
         ofPushMatrix();
 
-            ofScale(200, 200, 200);
-            ofRotateX(10 * ofGetElapsedTimef());
-            ofRotateY(20 * ofGetElapsedTimef());
+            ofScale(150, 150, 150);
+            ofRotateX(10 * time);
+            ofRotateY(20 * time);
             videoTex2.bind();
             mesh3.drawFaces();
             videoTex2.unbind();
@@ -213,16 +173,4 @@ void ofApp::draw(){
     }
 
     easyCam.end();
-}
-
-void ofApp::keyPressed(int key) {
-
-    if(key == 'r') {
-        tracker.reset();
-        classifier.reset();
-    }
-
-    if(key == 'l') {
-        classifier.load("expressions");
-    }
 }
