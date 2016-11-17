@@ -4,6 +4,11 @@
 /bin/data/*.obj
 /bin/data/*.mtl
 /bin/data/*.stl
+/bin/data/*.dae
+/bin/data/*.3ds
 /src/ofApp.cpp~
 /src/ofApp.h~
 /src/main.cpp~
+/bin/data/*.mp4
+/obj/*
+/src/*.autosave

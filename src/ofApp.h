@@ -14,21 +14,30 @@ class ofApp : public ofBaseApp{
     void keyPressed(int key);
 
     ofVideoGrabber cam;
+    ofVideoPlayer videoPlayer;
+    ofTexture videoTex;
+    ofTexture videoTex2;
     ofxFaceTracker tracker;
     ExpressionClassifier classifier; 
     ofEasyCam easyCam;
 
     ofLight light;
     ofLight light2;
+    ofLight light3;
 
     ofxAssimpModelLoader model;
     ofxAssimpModelLoader model2;
+    ofxAssimpModelLoader model3;
 
     ofVboMesh mesh;
     ofVboMesh mesh2;
+    ofVboMesh mesh3;
 
     ofImage tex;
     ofImage tex2;
+    ofImage tex3;
+
+    ofVec3f mesh3_center;
 
     float leftEye_x = 0;
     float leftEye_y = 0;
