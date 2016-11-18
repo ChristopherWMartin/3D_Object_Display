@@ -348,7 +348,7 @@ obj/linux64/Release/src/ofApp.o: \
  /home/cwm/of_v0.9.6_linux64_release/libs/openFrameworks/video/ofGstVideoPlayer.h \
  /home/cwm/of_v0.9.6_linux64_release/libs/openFrameworks/3d/ofCamera.h \
  /home/cwm/of_v0.9.6_linux64_release/libs/openFrameworks/3d/ofEasyCam.h \
- /home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/src/ofxFaceTracker.h \
+ /home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/src/ofxFaceTrackerThreaded.h \
  /home/cwm/of_v0.9.6_linux64_release/addons/ofxCv/src/ofxCv.h \
  /home/cwm/of_v0.9.6_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Utilities.h \
  /home/cwm/of_v0.9.6_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Wrappers.h \
@@ -366,6 +366,7 @@ obj/linux64/Release/src/ofApp.o: \
  /home/cwm/of_v0.9.6_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Flow.h \
  /home/cwm/of_v0.9.6_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/ObjectFinder.h \
  /home/cwm/of_v0.9.6_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Kalman.h \
+ /home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/src/ofxFaceTracker.h \
  /home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/Tracker.h \
  /home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/CLM.h \
  /home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/PDM.h \
@@ -1111,7 +1112,7 @@ obj/linux64/Release/src/ofApp.o: \
 
 /home/cwm/of_v0.9.6_linux64_release/libs/openFrameworks/3d/ofEasyCam.h:
 
-/home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/src/ofxFaceTracker.h:
+/home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/src/ofxFaceTrackerThreaded.h:
 
 /home/cwm/of_v0.9.6_linux64_release/addons/ofxCv/src/ofxCv.h:
 
@@ -1146,6 +1147,8 @@ obj/linux64/Release/src/ofApp.o: \
 /home/cwm/of_v0.9.6_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/ObjectFinder.h:
 
 /home/cwm/of_v0.9.6_linux64_release/addons/ofxCv/libs/ofxCv/include/ofxCv/Kalman.h:
+
+/home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/src/ofxFaceTracker.h:
 
 /home/cwm/of_v0.9.6_linux64_release/addons/ofxFaceTracker/libs/FaceTracker/include/FaceTracker/Tracker.h:
 

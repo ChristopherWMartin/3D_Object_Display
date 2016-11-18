@@ -1,6 +1,5 @@
 #include "ofApp.h"
 
-using namespace cv;
 using namespace ofxCv;
 
 // fix speed loss when searching for face

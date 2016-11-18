@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxFaceTracker.h"
+#include "ofxFaceTrackerThreaded.h"
 #include "ofxAssimpModelLoader.h"
 
 class ofApp : public ofBaseApp{
@@ -16,8 +16,7 @@ class ofApp : public ofBaseApp{
     ofVideoPlayer videoPlayer;
     ofTexture videoTex;
     ofTexture videoTex2;
-    ofxFaceTracker tracker;
-   // ExpressionClassifier classifier;
+    ofxFaceTrackerThreaded tracker;
     ofEasyCam easyCam;
 
     ofLight light;
