@@ -15,9 +15,8 @@ void ofApp::setup(){
     ofDisableArbTex();
     ofEnableDepthTest();
 
-    //3dObject_1.setup();
+    //3DObj_1.setup();
 
-    // work in Blender to get image wraps working
     model.loadModel("1.dae");
     model.setRotation(0, 0, 0, 0, 0);
     model.setScale(0.9, 0.9, 0.9);
@@ -36,7 +35,7 @@ void ofApp::setup(){
     model3.setPosition(900, 300, 900);
     mesh3 = model3.getMesh(0);
 
-    videoPlayer.loadMovie("video.mp4");
+    videoPlayer.loadMovie("1.mp4");
     videoPlayer.play();
 
     tex.load("1.png");
@@ -66,7 +65,7 @@ void ofApp::update(){
 
     light.setPosition(easyCam.getPosition());
 
-    //3dObject_1.update();
+    //3DObj_1.update();
 }
 
 void ofApp::draw(){
@@ -92,7 +91,7 @@ void ofApp::draw(){
         leftEye_y = (alpha) * leftEye_y + (1 - alpha) * rawLeftEye_y;
         trackerScale = (alpha) * trackerScale + (1 - alpha) * rawLrackerScale;
 
-        //3dObject_1.draw();
+        //3DObj_1.draw();
 
             ofPushMatrix();
 
