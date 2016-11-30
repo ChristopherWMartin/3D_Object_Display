@@ -11,3 +11,6 @@ endif
 
 # call the project makefile!
 include $(OF_ROOT)/libs/openFrameworksCompiled/project/makefileCommon/compile.project.mk
+
+check-syntax:
+	gcc -o nul -S ${CHK_SOURCES}

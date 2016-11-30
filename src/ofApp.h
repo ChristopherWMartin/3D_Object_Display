@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxFaceTrackerThreaded.h"
 #include "ofxAssimpModelLoader.h"
+//#include "3dObject.h"
 
 class ofApp : public ofBaseApp{
 
@@ -37,6 +38,8 @@ class ofApp : public ofBaseApp{
 
     float leftEye_x = 0;
     float leftEye_y = 0;
-    float trackerScale = 0;
+    float trackerScale = 150;
     float alpha = 0.92;
+
+    //3DObj 3DObj_1;
 };

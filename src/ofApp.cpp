@@ -2,8 +2,6 @@
 
 using namespace ofxCv;
 
-// fix speed loss when searching for face
-
 // Animation in background
 // human shaped object & mess with
 // scales of objects for projection
@@ -16,6 +14,8 @@ void ofApp::setup(){
     tracker.setup();
     ofDisableArbTex();
     ofEnableDepthTest();
+
+    //3dObject_1.setup();
 
     // work in Blender to get image wraps working
     model.loadModel("3DModel_wrapped3.dae");
@@ -65,6 +65,8 @@ void ofApp::update(){
     videoTex2.loadData(videoPlayer.getPixels());
 
     light.setPosition(easyCam.getPosition());
+
+    //3dObject_1.update();
 }
 
 void ofApp::draw(){
@@ -78,8 +80,6 @@ void ofApp::draw(){
 
       //ofBackground(0, 255, 200);
 
-      // is 'LeftEye' the best solution to determine
-      // face movement from left to right?
         ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
         ofVec2f leftCenter = leftEye.getBoundingBox().getCenter();
         float rawLeftEye_x = ofMap(leftCenter.x, 0, 500, 0, 800, true);
@@ -90,7 +90,11 @@ void ofApp::draw(){
         leftEye_y = (alpha) * leftEye_y + (1 - alpha) * rawLeftEye_y;
         trackerScale = (alpha) * trackerScale + (1 - alpha) * rawLrackerScale;
 
-                ofPushMatrix();
+
+
+        //3dObject_1.draw();
+
+            ofPushMatrix();
 
                     ofScale(trackerScale, trackerScale, trackerScale);
                     ofRotate(leftEye_x, 0, 1, 0);
@@ -141,7 +145,9 @@ void ofApp::draw(){
 
         ofPushMatrix();
 
-            ofScale(150, 150, 150);
+            ofScale(trackerScale, trackerScale, trackerScale);
+            ofRotate(leftEye_x, 0, 1, 0);
+            ofRotate(leftEye_y, 1, 0, 0);
             ofRotateX(90 * time);
             ofRotateY(20 * time);
             videoTex.bind();
@@ -151,7 +157,9 @@ void ofApp::draw(){
         ofPopMatrix();
         ofPushMatrix();
 
-            ofScale(150, 150, 150);
+            ofScale(trackerScale, trackerScale, trackerScale);
+            ofRotate(leftEye_x, 1, 0, 0);
+            ofRotate(leftEye_y, 0, 1, 0);
             ofRotateX(20 * time);
             ofRotateY(90 * time);
             tex2.bind();
@@ -161,7 +169,9 @@ void ofApp::draw(){
         ofPopMatrix();
         ofPushMatrix();
 
-            ofScale(150, 150, 150);
+            ofScale(trackerScale, trackerScale, trackerScale);
+            ofRotate(leftEye_x, 0, 0, 1);
+            ofRotate(leftEye_y, 1, 0, 0);
             ofRotateX(10 * time);
             ofRotateY(20 * time);
             videoTex2.bind();
