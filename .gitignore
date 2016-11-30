@@ -1,0 +1,9 @@
+/bin/3D_Object_Display
+/bin/libs/*
+Makefile
+config.make
+/obj/
+*.user
+*.qbs
+
+
