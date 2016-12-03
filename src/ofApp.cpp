@@ -15,39 +15,20 @@ void ofApp::setup(){
     ofDisableArbTex();
     ofEnableDepthTest();
 
-    //3DObj_1.setup();
+    obj_1.setup("1.dae", 0, 0, 0, 0, 0, 0.9, 50, 50, 0);
+    obj_2.setup("2.3ds", 0, 90, 1, 1, 0, 0.9, 50, 50, 0);
+    obj_3.setup("3.dae", 0, 90, 1, 2, 0, 0.9, 900, 300, 900);
+    obj_4.setup("4.dae", 0, 90, 1, 2, 0, 1, 50, 50, 0);
 
-    model.loadModel("1.dae");
-    model.setRotation(0, 0, 0, 0, 0);
-    model.setScale(0.9, 0.9, 0.9);
-    model.setPosition(50, 50, 0);
-    mesh = model.getMesh(0);
-
-    model2.loadModel("2.3ds");
-    model2.setRotation(0, 90, 1, 1, 0);
-    model2.setScale(0.9, 0.9, 0.9);
-    model2.setPosition(50, 50, 0);
-    mesh2 = model2.getMesh(0);
-
-    model3.loadModel("3.dae");
-    model3.setRotation(0, 90, 1, 2, 0);
-    model3.setScale(0.9, 0.9, 0.9);
-    model3.setPosition(900, 300, 900);
-    mesh3 = model3.getMesh(0);
-
-    videoPlayer.loadMovie("1.mp4");
+    videoPlayer.loadMovie("VideoTest3.mp4");
     videoPlayer.play();
+    videoPlayer2.loadMovie("VideoTest2.mov");
+    videoPlayer2.play();
 
     tex.load("1.png");
-    tex2.load("2.png");
-    //tex3.load("");
+    tex2.load("closeupgrass2large.png");
 
     light.enable();
-    //light.setPosition(model.getPosition() + ofPoint(0, 0, 1600));
-    //light2.enable();
-    //light2.setPosition(model2.getPosition() + ofPoint(0, 1600, 0));
-    //light3.enable();
-    //light3.setPosition(model3.getPosition() + ofPoint(1600, 0, 0));
 }
 
 void ofApp::update(){
@@ -55,31 +36,32 @@ void ofApp::update(){
     cam.update();
     if(cam.isFrameNew()) {
 
+        // Live webcam texture
         videoTex.loadData(cam.getPixels());
 
         tracker.update(toCv(cam));
     }
 
+    // Texture from loaded mp4 file
     videoPlayer.update();
     videoTex2.loadData(videoPlayer.getPixels());
+    videoPlayer2.update();
+    videoTex3.loadData(videoPlayer2.getPixels());
 
     light.setPosition(easyCam.getPosition());
-
-    //3DObj_1.update();
 }
 
 void ofApp::draw(){
 
+    ofColor bgColor(151,206,255);
+    ofBackground(bgColor);
+
     easyCam.setDistance(400);
     easyCam.begin();
 
-    //videoPlayer.draw(ofGetWidth()/2, ofGetHeight()/2);
+    videoTex2.draw(-300, -300);
 
     if(tracker.getFound()) {
-
-        //tracker.draw();
-
-        //ofBackground(videoPlayer.draw(0,0));
 
         ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
         ofVec2f leftCenter = leftEye.getBoundingBox().getCenter();
@@ -91,94 +73,85 @@ void ofApp::draw(){
         leftEye_y = (alpha) * leftEye_y + (1 - alpha) * rawLeftEye_y;
         trackerScale = (alpha) * trackerScale + (1 - alpha) * rawLrackerScale;
 
-        //3DObj_1.draw();
+        videoTex.bind();
+             obj_1.draw(trackerScale,
+                        leftEye_x, 0, 1, 0,
+                        leftEye_y, 1, 0, 0,
+                        0, 0);
+        videoTex.unbind();
 
-            ofPushMatrix();
+        tex.bind();
+             obj_2.draw((trackerScale - 50),
+                        leftEye_x, 1, 0, 0,
+                        leftEye_y, 0, 1, 0,
+                        0, 0);
+        tex.unbind();
 
-                    ofScale(trackerScale, trackerScale, trackerScale);
-                    ofRotate(leftEye_x, 0, 1, 0);
-                    ofRotate(leftEye_y, 1, 0, 0);
+        ofPushMatrix();
+        ofTranslate(0, 50, 25);
+        videoTex2.bind();
+             obj_3.draw((trackerScale - 50),
+                        leftEye_x, 0, 0, 1,
+                        //leftEye_y, 0, 0, 1,
+                        leftEye_y, 1, 0, 0,
+                        0, 0);
+        videoTex2.unbind();
+        ofPopMatrix();
 
-                         //ofSetColor(254, 100, 200);
-                         //tex.bind();
-                        videoTex.bind();
-                        mesh.drawFaces();
-                        videoTex.unbind();
-                        //tex.unbind();
+        ofPushMatrix();
+        ofTranslate(50, 25, 0);
+        videoTex3.bind();
+        //tex2.bind();
+             obj_4.draw((trackerScale - 20),
+                        leftEye_x, 0, 1, 0,
+                        leftEye_y, 0, 0, 1,
+                        0, 0);
+        videoTex3.unbind();
+        //tex2.unbind();
+        ofPopMatrix();
 
-                        //ofSetColor(254, 100, 200);
-                        mesh.drawFaces();
-
-                ofPopMatrix();
-                ofPushMatrix();
-
-                    ofScale(trackerScale - 50, trackerScale - 50, trackerScale - 50);
-                    ofRotate(leftEye_x, 1, 0, 0);
-                    ofRotate(leftEye_y, 0, 1, 0);
-
-                            tex2.bind();
-                            mesh2.drawFaces();
-                            tex2.unbind();
-
-                ofPopMatrix();
-                ofPushMatrix();
-
-                    ofScale(trackerScale - 50, trackerScale - 50, trackerScale - 50);
-                    ofRotate(leftEye_x, 0, 0, 1);
-                    ofRotate(leftEye_y, 1, 0, 0);
-
-                            //tex3.bind();
-                            videoTex2.bind();
-                            mesh3.drawFaces();
-                            videoTex2.unbind();
-                            //tex3.unbind();
-
-                ofPopMatrix();
     }
+
     else
+
     {
 
-        //ofBackground(255, 0, 200);
+        videoTex.bind();
+        obj_1.draw(trackerScale,
+                   leftEye_x, 0, 1, 0,
+                   leftEye_y, 1, 0, 0,
+                   90, 20);
+        videoTex.unbind();
 
-        float time = ofGetElapsedTimef();
+        tex.bind();
+        obj_2.draw(trackerScale,
+                   leftEye_x, 1, 0, 0,
+                   leftEye_y, 0, 1, 0,
+                   20, 90);
+        tex.unbind();
 
         ofPushMatrix();
-
-            ofScale(trackerScale, trackerScale, trackerScale);
-            ofRotate(leftEye_x, 0, 1, 0);
-            ofRotate(leftEye_y, 1, 0, 0);
-            ofRotateX(90 * time);
-            ofRotateY(20 * time);
-            videoTex.bind();
-            mesh.drawFaces();
-            videoTex.unbind();
-
+        ofTranslate(0, 50, 25);
+        videoTex2.bind();
+             obj_3.draw((trackerScale - 50),
+                        leftEye_x, 0, 0, 1,
+                        leftEye_y, 1, 0, 0,
+                        10, 20);
+        videoTex2.unbind();
         ofPopMatrix();
+
         ofPushMatrix();
-
-            ofScale(trackerScale, trackerScale, trackerScale);
-            ofRotate(leftEye_x, 1, 0, 0);
-            ofRotate(leftEye_y, 0, 1, 0);
-            ofRotateX(20 * time);
-            ofRotateY(90 * time);
-            tex2.bind();
-            mesh2.drawFaces();
-            tex2.unbind();
-
+        ofTranslate(50, 25, 0);
+        videoTex3.bind();
+        //tex2.bind();
+             obj_4.draw((trackerScale - 20),
+                        leftEye_x, 0, 1, 0,
+                        leftEye_y, 0, 0, 0,
+                        5, 10);
+        videoTex3.unbind();
+        //tex2.unbind();
         ofPopMatrix();
-        ofPushMatrix();
-
-            ofScale(trackerScale, trackerScale, trackerScale);
-            ofRotate(leftEye_x, 0, 0, 1);
-            ofRotate(leftEye_y, 1, 0, 0);
-            ofRotateX(10 * time);
-            ofRotateY(20 * time);
-            videoTex2.bind();
-            mesh3.drawFaces();
-            videoTex2.unbind();
-
-        ofPopMatrix();
-    }
+   }
 
     easyCam.end();
 }

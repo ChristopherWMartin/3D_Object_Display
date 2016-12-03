@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxFaceTrackerThreaded.h"
 #include "ofxAssimpModelLoader.h"
-//#include "3dObject.h"
+#include "obj.h"
 
 class ofApp : public ofBaseApp{
 
@@ -13,33 +13,32 @@ class ofApp : public ofBaseApp{
     void update();
     void draw();
 
-    ofVideoGrabber cam;
-    ofVideoPlayer videoPlayer;
-    ofTexture videoTex;
-    ofTexture videoTex2;
+    obj obj_1;
+    obj obj_2;
+    obj obj_3;
+    obj obj_4;
+
     ofxFaceTrackerThreaded tracker;
     ofEasyCam easyCam;
 
     ofLight light;
-    ofLight light2;
-    ofLight light3;
 
-    ofxAssimpModelLoader model;
-    ofxAssimpModelLoader model2;
-    ofxAssimpModelLoader model3;
+    ofVideoGrabber cam;
+    ofVideoPlayer videoPlayer;
+    ofVideoPlayer videoPlayer2;
 
-    ofVboMesh mesh;
-    ofVboMesh mesh2;
-    ofVboMesh mesh3;
+    ofTexture videoTex;
+    ofTexture videoTex2;
+    ofTexture videoTex3;
 
+    //ofImage tex;
     ofImage tex;
     ofImage tex2;
-    ofImage tex3;
 
     float leftEye_x = 0;
     float leftEye_y = 0;
     float trackerScale = 150;
     float alpha = 0.92;
 
-    //3DObj 3DObj_1;
+    float p = 0.0;
 };
