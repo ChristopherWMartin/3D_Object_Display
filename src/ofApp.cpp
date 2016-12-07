@@ -59,7 +59,7 @@ void ofApp::draw(){
     easyCam.setDistance(400);
     easyCam.begin();
 
-    videoTex2.draw(-300, -300);
+    videoTex2.draw(-(ofGetWidth()/2), -(ofGetHeight()/2), ofGetWidth(), ofGetHeight());
 
     if(tracker.getFound()) {
 

@@ -1,7 +1,14 @@
 /bin/3D_Object_Display
+/bin/3D_Object_Display.app
+/bin/3D_Object_DisplayDebug
+/bin/3D_Object_DisplayDebug.app
 /bin/libs/*
 Makefile
 config.make
 /obj/
 *.user
 *.qbs
+*.xcodeproj
+*.plist
+*.xcconfig
+.DS_Store
